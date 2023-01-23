@@ -11,6 +11,7 @@ import model.entities.Seller;
 
 public class Program {
     public static void main(String[] args) {
+       DateTimeFormatter fmt = DateTimeFormatter.ofPattern("dd/MM/yyyy");
        SellerDao sellerDao = DaoFactory.creatSellerDao();
 
        System.out.println("=== TEST 1: seller findById ===");
@@ -27,9 +28,15 @@ public class Program {
 
        System.out.println("\n=== TEST 3: seller findAll ===");       
        list = sellerDao.findAll();
-
+       
        for (Seller obj : list) {
-        System.out.println(obj);
-       }
+           System.out.println(obj);
+        }
+
+
+        System.out.println("\n=== TEST 4: seller insert ===");  
+        Seller newSeller    = new Seller(null, "Greg", "greg@gmail.com", LocalDate.parse("28/01/1987", fmt), 4000.0, department);
+        sellerDao.insert(newSeller);
+        System.out.println("Inserted, new seller = " + newSeller.getId());
     }
 }
