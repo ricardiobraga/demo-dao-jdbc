@@ -7,13 +7,12 @@ import java.util.Scanner;
 
 import model.dao.DaoFactory;
 import model.dao.SellerDao;
-import model.dao.impl.SellerDaoJDBC;
 import model.entities.Department;
 import model.entities.Seller;
 
 public class Program {
     public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
+       Scanner sc = new Scanner(System.in);
 
        DateTimeFormatter fmt = DateTimeFormatter.ofPattern("dd/MM/yyyy");
        SellerDao sellerDao = DaoFactory.creatSellerDao();
@@ -36,6 +35,8 @@ public class Program {
        for (Seller obj : list) {
            System.out.println(obj);
         }
+
+
         System.out.println("\n=== TEST 4: seller insert ===");  
         Seller newSeller    = new Seller(null, "Greg", "greg@gmail.com", LocalDate.parse("28/01/1987", fmt), 4000.0, department);
         sellerDao.insert(newSeller);

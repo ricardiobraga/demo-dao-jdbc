@@ -6,7 +6,6 @@ import java.sql.Statement;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.Date;
@@ -14,7 +13,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import javax.crypto.spec.DHGenParameterSpec;
+
 
 
 
@@ -116,11 +115,11 @@ public class SellerDaoJDBC implements SellerDao {
             st.setInt(1, id);
             int rowns = st.executeUpdate();
             if (rowns == 0) {
-                throw new DbException(null)
+                throw new DbException("The selected Id doesn´t exists");
             }
         }
         catch (SQLException e){
-            throw new DbException("The selected Id doesn´t exists");
+            throw new DbException(e.getMessage());
         }
         finally{
             DB.closeStatement(st);
